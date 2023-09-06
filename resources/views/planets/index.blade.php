@@ -26,9 +26,15 @@
                 <td>{{ $planet->英名 }}</td>
                 <td>{{ $planet->半径 }}</td>
                 <td>{{ $planet->重量 }}</td>
-                <td><a href="">詳細</a></td>
-                <td><a href="">編集</a></td>
-                <td><button>削除する</button></td>
+                <td><a href="/planets/{{ $planet->id }}">詳細</a></td>
+                <td><a href="/planets/{{ $planet->id }}/edit">編集</a></td>
+                <td>
+                    <form action="/planets/{{ $planet->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="削除する" onclick="if(!confirm('削除しますか？')){return false};">
+                    </form>
+                </td>
             </tr>
         @endforeach
     </table>
